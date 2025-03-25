@@ -2,8 +2,8 @@ from openai import OpenAI
 import streamlit as st
 import time
 
-assistant_id = 'asst_AFfxBHzSo4b0C4Y4hUJ8hY6T'
-# thread_id = 'thread_rtnIcfC2K1U0isdXh8ZzJuT8' # threadID를 고정할 경우 1명을 위한 것이므로 아래에서 다시 구현한다.
+assistant_id = st.secrets["assistant_id"]
+thread_id = st.secrets["thread_id"] # threadID를 고정할 경우 1명을 위한 것이므로 아래에서 다시 구현한다.
 
 with st.sidebar:
     # 후원하기 링크 달기
@@ -17,7 +17,7 @@ with st.sidebar:
     
     client = OpenAI(api_key=openai_api_key)
 
-    thread_id = st.text_input("Thread ID") # thread_id는 개인화를 위해 삭제한다.
+    thread_id = st.text_input("Thread ID", value=thread_id) # thread_id는 개인화를 위해 삭제한다.
 
     # 버튼을 만들어 새로운 thread를 받아서 사용하는 코드
     # 스레드를 새로 생성할 경우
